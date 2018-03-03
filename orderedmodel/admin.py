@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from django.conf import settings
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.admin.views.main import ChangeList
@@ -14,7 +14,7 @@ class OrderedModelAdmin(admin.ModelAdmin):
   exclude = ['order']
 
   def get_urls(self):
-    my_urls = patterns('',
+    my_urls = (
         url(r'^(?P<pk>\d+)/move_up/$', self.admin_site.admin_view(self.move), {'down': False}),
         url(r'^(?P<pk>\d+)/move_down/$', self.admin_site.admin_view(self.move), {'down': True}),
     )
